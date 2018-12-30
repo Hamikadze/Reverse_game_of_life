@@ -75,6 +75,8 @@ let sketch_reverse = function (p) {
             p.redraw();
         });
         $("#variantsSelect").val(0);
+        value = int($("#variantsSelect").find(":selected").val());
+        p.redraw();
     }
 
     p.draw = function () {
