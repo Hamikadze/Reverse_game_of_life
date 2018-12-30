@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+
+    /* This centers our sketch vertically. */
+    align-items: center;
+}
+
+#input_grid {
+    width: 502px;
+    height: 502px;
+    border-style: solid;
+}
+
+#output_grid {
+    width: 502px;
+    height: 502px;
+    border-style: solid;
+}
+
+#variantsSelect{
+    width: 200px;
+}
+
+#gridSizeSelect{
+    width: 100px;
+}
