@@ -4,7 +4,12 @@ let input_cells = 3;
 let drawThings;
 let oneStep;
 
-var sketch_forward = function (p) {
+
+let output_grid = [];
+let output_cells = input_cells + 2;
+let grids_array = [];
+
+const sketch_forward = function (p) {
     let resolution;
     p.setup = function () {
         p.frameRate(15);
@@ -50,15 +55,23 @@ var sketch_forward = function (p) {
 
 
 let sketch_reverse = function (p) {
-    let output_cells = input_cells + 2;
-    let grids_array = [];
-    let value;
-    p.setup = function () {
-        p.noLoop();
-        document.getElementById("btn_calc_back").onclick = function () {
+    $("#btn_calc_back").on("click", function () {
+        $("#coverScreen").show();
+        setTimeout(function () {
+            output_cells = input_cells + 2;
             grids_array = TestMe(grid);
             refill();
-        };
+            $("#coverScreen").hide();
+        }, 300);
+    });
+    $("#variantsSelect").change(function () {
+        let value = int($("#variantsSelect").find(":selected").val());
+        output_grid = grids_array[int(value)];
+        p.redraw();
+    });
+
+    p.setup = function () {
+        p.noLoop();
         p.frameRate(15);
         p.createCanvas(size, size);
 
@@ -68,14 +81,9 @@ let sketch_reverse = function (p) {
 
     function refill() {
         for (let i = 0; i < grids_array.length; i++) {
-            $("#variantsSelect").append('<option value="' + i + '">' + i + '</option>');
+            $("#variantsSelect").append('<option value="' + i + '">' + i + '</option>').val(0);
         }
-        $("#variantsSelect").change(function () {
-            value = int($("#variantsSelect").find(":selected").val());
-            p.redraw();
-        });
-        $("#variantsSelect").val(0);
-        value = int($("#variantsSelect").find(":selected").val());
+        output_grid = grids_array[0];
         p.redraw();
     }
 
@@ -84,7 +92,6 @@ let sketch_reverse = function (p) {
             p.background(255);
             let resolution = size / output_cells;
 
-            let output_grid = grids_array[int(value)];
             for (let i = 0; i < output_cells; i++) {
                 for (let j = 0; j < output_cells; j++) {
                     let x = i * resolution;
@@ -102,31 +109,13 @@ let sketch_reverse = function (p) {
 
 function setup() {
     const input_p5 = new p5(sketch_forward, 'input_grid');
-    //TestMe([[1,0,0],[0,1,1],[1,1,0]]);
-    var output_p5 = new p5(sketch_reverse, 'output_grid');
-    for (let i = 3; i <= 10; i++) {
+    const output_p5 = new p5(sketch_reverse, 'output_grid');
+    for (let i = 3; i <= 8; i++) {
         $("#gridSizeSelect").append('<option value="' + i + '">' + i + "x" + i + '</option>');
     }
     //$("#gridSizeSelect").val(0);
     $("#gridSizeSelect").change(function () {
         input_cells = int($("#gridSizeSelect").find(":selected").val());
-        grid = make2DArray(input_cells, input_cells);
-        input_p5.redraw();
-        output_p5.redraw();
-    });
-
-
-    document.getElementById("btn_start").onclick = function () {
-        drawThings = true;
-    };
-    document.getElementById("btn_stop").onclick = function () {
-        drawThings = false;
-    };
-    document.getElementById("btn_step").onclick = function () {
-        oneStep = true;
-    };
-
-    document.getElementById("btn_random").onclick = function () {
         grid = make2DArray(input_cells, input_cells);
         for (let i = 0; i < input_cells; i++) {
             for (let j = 0; j < input_cells; j++) {
@@ -134,7 +123,30 @@ function setup() {
             }
         }
         input_p5.redraw();
-    };
+        output_p5.redraw();
+    });
+
+    $("#btn_start").on("click", function () {
+        drawThings = true;
+    });
+
+
+    $("#btn_stop").on("click", function () {
+        drawThings = false;
+    });
+    $("#btn_step").on("click", function () {
+        oneStep = true;
+    });
+
+    $("#btn_clear").on("click", function () {
+        grid = make2DArray(input_cells, input_cells);
+        for (let i = 0; i < input_cells; i++) {
+            grid[i].fill(0);
+        }
+        input_p5.redraw();
+    });
+
+    $("#coverScreen").hide();
 }
 
 

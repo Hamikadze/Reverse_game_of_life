@@ -134,14 +134,8 @@ function Initialize(goal) {
 
 function Calculate() {
     console.log("Calculating...");
-    let prev_row;
     let curr_row = [];
-
-
-    let step_forward; //temp variable containing a pattern run forwards 1 step
-    let last_path;
-    let hash;
-
+    let step_forward;
     //Initialize
 
     if (grid_goal[0][0] === 0) {
@@ -176,19 +170,24 @@ function Calculate() {
         }
     }
 
+    //$('.progress-bar').css('width', 0 + '%').attr('aria-valuemax', progress_max);
+
 
     for (let y = 0; y < g_g_height; y++) {
         for (let x = 0; x < g_g_width; x++) {
             if (x === 0 && y === 0) {
                 continue;
             }
-            prev_row = curr_row.slice(0);
+
+
+            let prev_row = curr_row.slice(0);
             curr_row = [];
 
+            let hash;
             prev_row.forEach(function (path) {
 
 
-                last_path = path[path.length - 1];
+                let last_path = path[path.length - 1];
                 if (y === 0) {
                     if (x === (g_g_width - 1)) {
                         hash = GetHashCode(right_item(last_path));
@@ -389,6 +388,7 @@ function Calculate() {
 
             });
 
+            //$('.progress-bar').css('width', ((progress_value / progress_max) * 100) + '%').attr('aria-valuenow', progress_value);
             console.log("Variations for (" + x + "," + y + ") :" + curr_row.length);
         }
     }
