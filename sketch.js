@@ -48,7 +48,7 @@ const sketch_forward = function (p) {
         if (Math.abs(Math.floor(p.mouseY)) <= size && Math.abs(Math.floor(p.mouseX)) <= size) {
             let y = p.floor(p.mouseY / resolution);
             let x = p.floor(p.mouseX / resolution);
-            grid[x][y] = !grid[x][y];
+            grid[x][y] = int(!grid[x][y]);
         }
     }
 };

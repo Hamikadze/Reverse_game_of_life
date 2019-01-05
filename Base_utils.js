@@ -96,19 +96,15 @@ function make_step_forward(array) {
     const x_length = array.length;
     const y_length = array[0].length;
     const result = make2DArray(x_length, y_length);
-    let is_left;
-    let is_up;
-    let is_right;
-    let is_down;
-    let count;
+
     for (let x = 0; x < x_length; x++) {
         for (let y = 0; y < y_length; y++) {
-            is_left = (y === 0);
-            is_right = (y === (y_length - 1));
-            is_up = (x === 0);
-            is_down = (x === (x_length - 1));
+            let is_left = (y === 0);
+            let is_right = (y === (y_length - 1));
+            let is_up = (x === 0);
+            let is_down = (x === (x_length - 1));
 
-            count = (is_left ? 0 : array[x][y - 1]) +
+            let count = (is_left ? 0 : array[x][y - 1]) +
                 (is_left || is_up ? 0 : array[x - 1][y - 1]) +
                 (is_up ? 0 : array[x - 1][y]) +
                 (is_up || is_right ? 0 : array[x - 1][y + 1]) +
