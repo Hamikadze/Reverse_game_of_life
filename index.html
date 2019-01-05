@@ -17,7 +17,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Game of Life</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript" src="p5.js"></script>
     <script type="text/javascript" src="p5.dom.js"></script>
     <script type="text/javascript" src="sketch.js"></script>
@@ -26,7 +26,6 @@
     <script type="text/javascript" src="Base_functions.js"></script>
 </head>
 <body>
-
 <div id="container_input" style="border: 10px solid transparent">
     <div id='input_grid'></div>
     <button type="button" class="btn btn-primary" id="btn_start">Start</button>
@@ -43,8 +42,19 @@
     </select>
 </div>
 
+
+
+<div id="footer_block"  class="alert alert-primary" role="alert">
+    <h4 class="alert-heading">Обратите внимание!</h4>
+    <p>Размер поля и расположение клеток влияют на производительность. Может возникнуть ситуация, что Ваш браузер завистнет из-за нехватки ресурсов.</p>
+    <hr>
+    <p class="mb-0">Тестирование поля 8x8 проводилось на 4 ядерном i7 с 16 гб оперативной памяти.</p>
+</div>
+
 <div id="coverScreen"  class="LockOn">
 </div>
+
+
 
 </body>
 

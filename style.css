@@ -5,8 +5,12 @@ html, body {
 body {
     margin: 0;
     display: flex;
+}
 
-
+#footer_block{
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 #container_input {
@@ -34,7 +38,7 @@ body {
 }
 
 #variantsSelect {
-    width: 200px;
+    width: 100px;
 }
 
 #gridSizeSelect {
