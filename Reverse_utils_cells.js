@@ -1,3 +1,4 @@
+
 let patterns_all; //all patterns that fit in a 3x3 grid.
 let patterns_all_live; //live in the center
 let patterns_all_die; //die in the center
@@ -9,14 +10,13 @@ let patterns_u_die;
 let patterns_ul_live;
 let patterns_ul_die;
 
-let grid_goal;
-let wide_grid_goal;
+//let grid_goal;
 
-let g_g_width; // grid_goal = g_g
-let g_g_height;
+//let g_g_width; // grid_goal = g_g
+//let g_g_height;
 
-let all_rows;
-let found_solutions;
+//let all_rows;
+//let found_solutions;
 
 function TestMe(goal) {
     Initialize(goal);
@@ -27,7 +27,6 @@ function TestMe(goal) {
 function Initialize(goal) {
     console.log("Initializing...");
     grid_goal = goal;
-    wide_grid_goal = pad(grid_goal, 2);
 
     g_g_width = goal.length;
     g_g_height = goal[0].length;
@@ -170,7 +169,7 @@ function Calculate() {
         }
     }
 
-    //$('.progress-bar').css('width', 0 + '%').attr('aria-valuemax', progress_max);
+    //$('.progress-bar').css('g_g_width', 0 + '%').attr('aria-valuemax', progress_max);
 
 
     for (let y = 0; y < g_g_height; y++) {
@@ -388,7 +387,7 @@ function Calculate() {
 
             });
 
-            //$('.progress-bar').css('width', ((progress_value / progress_max) * 100) + '%').attr('aria-valuenow', progress_value);
+            //$('.progress-bar').css('g_g_width', ((progress_value / progress_max) * 100) + '%').attr('aria-valuenow', progress_value);
             console.log("Variations for (" + x + "," + y + ") :" + curr_row.length);
         }
     }
@@ -397,7 +396,7 @@ function Calculate() {
     console.log("Reconstructing...");
     ReconstructPaths();
     console.log("Verifying...");
-    VerifyResults();
+    VerifyResults(found_solutions, grid_goal);
 }
 
 function ReconstructPaths() {
@@ -411,7 +410,7 @@ function ReconstructPaths() {
 
             temp = fill_wide_grid(temp,
                 path[i],
-                [(byte)((i % g_g_width)), (byte)((i / g_g_width))]);
+                [i % g_g_width, i / g_g_width]);
         }
 
         found_solutions.push(temp);
@@ -421,50 +420,4 @@ function ReconstructPaths() {
 
 }
 
-function VerifyResults() {
-    let result = true;
-    found_solutions.forEach(function (pat) {
-
-        if (!Equals(make_step_forward(pad(pat)), wide_grid_goal)) {
-            result = false;
-
-        }
-    });
-    if (result)
-        console.log("Everything perfect.");
-    else
-        console.log("Something went wrong.");
-}
-
-
-function GetHashUL1(array) {
-    return (128 * array[0][0] +
-        64 * array[1][0] +
-        32 * array[2][0] +
-        16 * array[0][1] +
-        8 * array[1][1] +
-        4 * array[2][1] +
-        2 * array[0][2] +
-        array[1][2]);
-}
-
-function GetHashUL2(array_left, array_top) {
-    return (128 * array_top[0][1]
-        + 64 * array_top[1][1]
-        + 32 * array_top[2][1]
-        + 16 * array_top[0][2]
-        + 8 * array_top[1][2]
-        + 4 * array_top[2][2]
-        + 2 * array_left[1][2]
-        + array_left[2][2]);
-}
-
-function Append(path, new_path) {
-    let res = new Array(path.length + 1);
-    for (let i = 0; i < path.length; i++) {
-        res[i] = path[i];
-    }
-    res[path.length] = new_path;
-    return res;
-}
 

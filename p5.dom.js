@@ -401,7 +401,7 @@
    * function setup() {
    *   slider = createSlider(0, 255, 100);
    *   slider.position(10, 10);
-   *   slider.style('width', '80px');
+   *   slider.style('g_g_width', '80px');
    * }
    *
    * function draw() {
@@ -416,7 +416,7 @@
    *   colorMode(HSB);
    *   slider = createSlider(0, 360, 60, 40);
    *   slider.position(10, 10);
-   *   slider.style('width', '80px');
+   *   slider.style('g_g_width', '80px');
    * }
    *
    * function draw() {
@@ -665,7 +665,7 @@
    *   radio.option('black');
    *   radio.option('white');
    *   radio.option('gray');
-   *   radio.style('width', '60px');
+   *   radio.style('g_g_width', '60px');
    *   textAlign(CENTER);
    *   fill(255, 0, 0);
    * }
@@ -673,7 +673,7 @@
    * function draw() {
    *   var val = radio.value();
    *   background(val);
-   *   text(val, width / 2, height / 2);
+   *   text(val, g_g_width / 2, height / 2);
    * }
    * </code></div>
    * <div><code>
@@ -684,7 +684,7 @@
    *   radio.option('apple', 1);
    *   radio.option('bread', 2);
    *   radio.option('juice', 3);
-   *   radio.style('width', '60px');
+   *   radio.style('g_g_width', '60px');
    *   textAlign(CENTER);
    * }
    *
@@ -692,7 +692,7 @@
    *   background(200);
    *   var val = radio.value();
    *   if (val) {
-   *     text('item cost is $' + val, width / 2, height / 2);
+   *     text('item cost is $' + val, g_g_width / 2, height / 2);
    *   }
    * }
    * </code></div>
@@ -910,7 +910,7 @@
    *
    * function draw() {
    *   if (img) {
-   *     image(img, 0, 0, width, height);
+   *     image(img, 0, 0, g_g_width, height);
    *   }
    * }
    *
@@ -1003,12 +1003,12 @@
 
     var c = addElement(elt, pInst, true);
     c.loadedmetadata = false;
-    // set width and height onload metadata
+    // set g_g_width and height onload metadata
     elt.addEventListener('loadedmetadata', function() {
       c.width = elt.videoWidth;
       c.height = elt.videoHeight;
       //c.elt.playbackRate = s;
-      // set elt width and height if not set
+      // set elt g_g_width and height if not set
       if (c.elt.width === 0) c.elt.width = elt.videoWidth;
       if (c.elt.height === 0) c.elt.height = elt.videoHeight;
       if (c.presetPlaybackRate) {
@@ -1178,7 +1178,7 @@
    * }
    *
    * function draw() {
-   *   image(capture, 0, 0, width, width * capture.height / capture.width);
+   *   image(capture, 0, 0, g_g_width, g_g_width * capture.height / capture.g_g_width);
    *   filter(INVERT);
    * }
    * </code></div>
@@ -1265,7 +1265,7 @@
     }
     var c = addElement(elt, this, true);
     c.loadedmetadata = false;
-    // set width and height onload metadata
+    // set g_g_width and height onload metadata
     elt.addEventListener('loadedmetadata', function() {
       elt.play();
       if (elt.width) {
@@ -1872,12 +1872,12 @@
 
   /**
    *
-   * Sets the width and height of the element. AUTO can be used to
-   * only adjust one dimension. If no arguments given returns the width and height
+   * Sets the g_g_width and height of the element. AUTO can be used to
+   * only adjust one dimension. If no arguments given returns the g_g_width and height
    * of the element in an object.
    *
    * @method size
-   * @return {Object} the width and height of the element in an object
+   * @return {Object} the g_g_width and height of the element in an object
    * @example
    * <div class='norender'><code>
    * var div = createDiv('this is a div');
@@ -1886,7 +1886,7 @@
    */
   /**
    * @method size
-   * @param  {Number|Constant} w    width of the element, either AUTO, or a number
+   * @param  {Number|Constant} w    g_g_width of the element, either AUTO, or a number
    * @param  {Number|Constant} [h] height of the element, either AUTO, or a number
    * @chainable
    */
@@ -1915,7 +1915,7 @@
           this.elt.setAttribute('height', aH * this._pInst._pixelDensity);
           this.elt.setAttribute(
             'style',
-            'width:' + aW + 'px; height:' + aH + 'px'
+            'g_g_width:' + aW + 'px; height:' + aH + 'px'
           );
           this._pInst.scale(
             this._pInst._pixelDensity,
@@ -2021,13 +2021,13 @@
      *   //an alert box displays the MediaElement's
      *   //src field.
      *   textAlign(CENTER);
-     *   text('Click Me!', width / 2, height / 2);
+     *   text('Click Me!', g_g_width / 2, height / 2);
      * }
      *
      * function mouseClicked() {
      *   //here we test if the mouse is over the
      *   //canvas element when it's clicked
-     *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+     *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
      *     //Show our p5.MediaElement's src field
      *     alert(ele.src);
      *   }
@@ -2082,20 +2082,20 @@
    *
    *   background(250);
    *   textAlign(CENTER);
-   *   text('Click to Play!', width / 2, height / 2);
+   *   text('Click to Play!', g_g_width / 2, height / 2);
    * }
    *
    * function mouseClicked() {
    *   //here we test if the mouse is over the
    *   //canvas element when it's clicked
-   *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+   *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
    *     //Here we call the play() function on
    *     //the p5.MediaElement we created above.
    *     //This will start the audio sample.
    *     ele.play();
    *
    *     background(200);
-   *     text('You clicked Play!', width / 2, height / 2);
+   *     text('You clicked Play!', g_g_width / 2, height / 2);
    *   }
    * }
    * </code></div>
@@ -2148,13 +2148,13 @@
    *   ele = createAudio('assets/beat.mp3');
    *   background(200);
    *   textAlign(CENTER);
-   *   text('Click to play!', width / 2, height / 2);
+   *   text('Click to play!', g_g_width / 2, height / 2);
    * }
    *
    * function mouseClicked() {
    *   //here we test if the mouse is over the
    *   //canvas element when it's clicked
-   *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+   *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
    *     background(200);
    *
    *     if (sampleIsPlaying) {
@@ -2168,14 +2168,14 @@
    *       ele.stop();
    *
    *       sampleIsPlaying = false;
-   *       text('Click to play!', width / 2, height / 2);
+   *       text('Click to play!', g_g_width / 2, height / 2);
    *     } else {
    *       //loop our sound element until we
    *       //call ele.stop() on it.
    *       ele.loop();
    *
    *       sampleIsPlaying = true;
-   *       text('Click to stop!', width / 2, height / 2);
+   *       text('Click to stop!', g_g_width / 2, height / 2);
    *     }
    *   }
    * }
@@ -2212,13 +2212,13 @@
    *   ele = createAudio('assets/lucky_dragons.mp3');
    *   background(200);
    *   textAlign(CENTER);
-   *   text('Click to play!', width / 2, height / 2);
+   *   text('Click to play!', g_g_width / 2, height / 2);
    * }
    *
    * function mouseClicked() {
    *   //here we test if the mouse is over the
    *   //canvas element when it's clicked
-   *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+   *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
    *     background(200);
    *
    *     if (sampleIsPlaying) {
@@ -2231,14 +2231,14 @@
    *       ele.pause();
    *
    *       sampleIsPlaying = false;
-   *       text('Click to resume!', width / 2, height / 2);
+   *       text('Click to resume!', g_g_width / 2, height / 2);
    *     } else {
    *       //loop our sound element until we
    *       //call ele.pause() on it.
    *       ele.loop();
    *
    *       sampleIsPlaying = true;
-   *       text('Click to pause!', width / 2, height / 2);
+   *       text('Click to pause!', g_g_width / 2, height / 2);
    *     }
    *   }
    * }
@@ -2274,13 +2274,13 @@
    *   ele = createAudio('assets/lucky_dragons.mp3');
    *   background(200);
    *   textAlign(CENTER);
-   *   text('Click to loop!', width / 2, height / 2);
+   *   text('Click to loop!', g_g_width / 2, height / 2);
    * }
    *
    * function mouseClicked() {
    *   //here we test if the mouse is over the
    *   //canvas element when it's clicked
-   *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+   *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
    *     background(200);
    *
    *     if (!sampleIsLooping) {
@@ -2289,12 +2289,12 @@
    *       ele.loop();
    *
    *       sampleIsLooping = true;
-   *       text('Click to stop!', width / 2, height / 2);
+   *       text('Click to stop!', g_g_width / 2, height / 2);
    *     } else {
    *       ele.stop();
    *
    *       sampleIsLooping = false;
-   *       text('Click to loop!', width / 2, height / 2);
+   *       text('Click to loop!', g_g_width / 2, height / 2);
    *     }
    *   }
    * }
@@ -2330,22 +2330,22 @@
    *   ele = createAudio('assets/beat.mp3');
    *   background(200);
    *   textAlign(CENTER);
-   *   text('Click to play!', width / 2, height / 2);
+   *   text('Click to play!', g_g_width / 2, height / 2);
    * }
    *
    * function mouseClicked() {
    *   //here we test if the mouse is over the
    *   //canvas element when it's clicked
-   *   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+   *   if (mouseX >= 0 && mouseX <= g_g_width && mouseY >= 0 && mouseY <= height) {
    *     background(200);
    *
    *     if (sampleIsPlaying) {
    *       ele.noLoop();
-   *       text('No more Loops!', width / 2, height / 2);
+   *       text('No more Loops!', g_g_width / 2, height / 2);
    *     } else {
    *       ele.loop();
    *       sampleIsPlaying = true;
-   *       text('Click to stop looping!', width / 2, height / 2);
+   *       text('Click to stop looping!', g_g_width / 2, height / 2);
    *     }
    *   }
    * }
@@ -2388,7 +2388,7 @@
    *   ele = createAudio('assets/lucky_dragons.mp3');
    *   background(250);
    *   textAlign(CENTER);
-   *   text('Click to Play!', width / 2, height / 2);
+   *   text('Click to Play!', g_g_width / 2, height / 2);
    * }
    * function mouseClicked() {
    *   // Here we call the volume() function
@@ -2397,7 +2397,7 @@
    *   ele.volume(0.2);
    *   ele.play();
    *   background(200);
-   *   text('You clicked Play!', width / 2, height / 2);
+   *   text('You clicked Play!', g_g_width / 2, height / 2);
    * }
    * </code></div>
    * <div><code>
@@ -2416,13 +2416,13 @@
    * function draw() {
    *   if (counter === 0) {
    *     background(0, 255, 0);
-   *     text('volume(0.9)', width / 2, height / 2);
+   *     text('volume(0.9)', g_g_width / 2, height / 2);
    *   } else if (counter === 1) {
    *     background(255, 255, 0);
-   *     text('volume(0.5)', width / 2, height / 2);
+   *     text('volume(0.5)', g_g_width / 2, height / 2);
    *   } else if (counter === 2) {
    *     background(255, 0, 0);
-   *     text('volume(0.1)', width / 2, height / 2);
+   *     text('volume(0.1)', g_g_width / 2, height / 2);
    *   }
    * }
    *
@@ -2564,7 +2564,7 @@
    *   ele = createAudio('assets/lucky_dragons.mp3');
    *   background(250);
    *   textAlign(CENTER);
-   *   text('start at beginning', width / 2, height / 2);
+   *   text('start at beginning', g_g_width / 2, height / 2);
    * }
    *
    * // this function fires with click anywhere
@@ -2576,13 +2576,13 @@
    *     // play()
    *     ele.play().time(0);
    *     background(200);
-   *     text('jump 2 sec in', width / 2, height / 2);
+   *     text('jump 2 sec in', g_g_width / 2, height / 2);
    *     beginning = false;
    *   } else {
    *     // here we jump 2 seconds into the sound
    *     ele.play().time(2);
    *     background(250);
-   *     text('start at beginning', width / 2, height / 2);
+   *     text('start at beginning', g_g_width / 2, height / 2);
    *     beginning = true;
    *   }
    * }
@@ -2626,7 +2626,7 @@
    *   ele.play();
    *   background(200);
    *   //ele.duration dislpays the duration
-   *   text(ele.duration() + ' seconds', width / 2, height / 2);
+   *   text(ele.duration() + ' seconds', g_g_width / 2, height / 2);
    * }
    * </code></div>
    */
@@ -2863,7 +2863,7 @@
    * function mousePressed() {
    *   ele.showControls();
    *   background(200);
-   *   text('Controls Shown', width / 2, height / 2);
+   *   text('Controls Shown', g_g_width / 2, height / 2);
    * }
    * </code></div>
    */
@@ -2894,7 +2894,7 @@
    * function mousePressed() {
    *   ele.hideControls();
    *   background(200);
-   *   text('Controls hidden', width / 2, height / 2);
+   *   text('Controls hidden', g_g_width / 2, height / 2);
    * }
    * </code></div>
    */

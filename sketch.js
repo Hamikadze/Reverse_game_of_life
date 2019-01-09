@@ -28,8 +28,11 @@ const sketch_forward = function (p) {
         p.background(255);
 
         for (let i = 0; i < input_cells; i++) {
+            let x = i * resolution;
+            p.line(0, x, x + size, x);
+            p.line(x, 0, x, x + size);
             for (let j = 0; j < input_cells; j++) {
-                let x = i * resolution;
+
                 let y = j * resolution;
                 if (grid[i][j]) {
                     p.fill(0);
@@ -74,9 +77,6 @@ let sketch_reverse = function (p) {
         p.noLoop();
         p.frameRate(15);
         p.createCanvas(size, size);
-
-        //$("#variantsSelect").selectpicker("refresh");
-
     };
 
     function refill() {
@@ -93,8 +93,12 @@ let sketch_reverse = function (p) {
             let resolution = size / output_cells;
 
             for (let i = 0; i < output_cells; i++) {
+                let x = i * resolution;
+
+                p.line(0, x, x + size, x);
+                p.line(x, 0, x, x + size);
                 for (let j = 0; j < output_cells; j++) {
-                    let x = i * resolution;
+
                     let y = j * resolution;
                     if (output_grid[i][j]) {
                         p.fill(0);
@@ -113,7 +117,6 @@ function setup() {
     for (let i = 3; i <= 8; i++) {
         $("#gridSizeSelect").append('<option value="' + i + '">' + i + "x" + i + '</option>');
     }
-    //$("#gridSizeSelect").val(0);
     $("#gridSizeSelect").change(function () {
         input_cells = int($("#gridSizeSelect").find(":selected").val());
         grid = make2DArray(input_cells, input_cells);

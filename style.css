@@ -15,25 +15,25 @@ body {
 
 #container_input {
 
-    width: 522px;
+    width: 530px;
     height: 600px;
 }
 
 #container_output {
 
-    width: 522px;
+    width: 530px;
     height: 600px;
 }
 
 #input_grid {
-    width: 502px;
-    height: 502px;
+    width: 505px;
+    height: 505px;
     border-style: solid;
 }
 
 #output_grid {
-    width: 502px;
-    height: 502px;
+    width: 505px;
+    height: 505px;
     border-style: solid;
 }
 

@@ -144,3 +144,93 @@ function pad(grid, pad_width = 1) {
     const result = make2DArray(grid.length + pad_width * 2, grid[0].length + pad_width * 2);
     return fill_wide_grid(result, grid, [pad_width, pad_width]);
 }
+
+
+function VerifyResults(solutions, goal) {
+    let wide_g_g = pad(goal, 2);
+    let result = true;
+    solutions.forEach(function (pat) {
+
+        if (!Equals(make_step_forward(pad(pat)), wide_g_g)) {
+            result = false;
+
+        }
+    });
+    if (result)
+        console.log("Everything perfect.");
+    else
+        console.log("Something went wrong.");
+}
+
+
+function GetHashUL1(array) {
+    return (128 * array[0][0] +
+        64 * array[1][0] +
+        32 * array[2][0] +
+        16 * array[0][1] +
+        8 * array[1][1] +
+        4 * array[2][1] +
+        2 * array[0][2] +
+        array[1][2]);
+}
+
+function GetHashUL2(array_left, array_top) {
+    return (128 * array_top[0][1]
+        + 64 * array_top[1][1]
+        + 32 * array_top[2][1]
+        + 16 * array_top[0][2]
+        + 8 * array_top[1][2]
+        + 4 * array_top[2][2]
+        + 2 * array_left[1][2]
+        + array_left[2][2]);
+}
+
+function Append(path, new_path) {
+    let res = new Array(path.length + 1);
+    for (let i = 0; i < path.length; i++) {
+        res[i] = path[i];
+    }
+    res[path.length] = new_path;
+    return res;
+}
+
+
+function lines_to_array_2D(line1, line2) {
+    if (line1.length !== line2.length) {
+        return [];
+    }
+    let result = make2DArray(line1.length, 2);
+    for (let x = 0; x < line1.length; x++) {
+        result[x][0] = line1[x];
+        result[x][1] = line2[x];
+    }
+    return result;
+}
+
+
+/**
+ * @return {number}
+ */
+function Pow2(pow) {
+    return 1 << pow;
+}
+
+function lines_to_array_3(line1, line2, line3, length) {
+    let result = make2DArray(length, 3);
+    for (let x = 0; x < length; x++) {
+        result[x][0] = line1[x];
+        result[x][1] = line2[x];
+        result[x][2] = line3[x];
+    }
+    return result;
+}
+
+
+function array_from_num(num) {
+    let result = new Array(32);
+    for (let i = 0; i < 32; i++) {
+        result[i] = (num % 2);
+        num = num >> 1;
+    }
+    return result;
+}
