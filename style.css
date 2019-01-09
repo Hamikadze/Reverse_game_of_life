@@ -41,6 +41,11 @@ body {
     width: 100px;
 }
 
+#calculationMethod{
+    width: 100px;
+
+}
+
 #gridSizeSelect {
     width: 100px;
 }

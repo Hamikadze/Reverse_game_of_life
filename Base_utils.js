@@ -146,14 +146,12 @@ function pad(grid, pad_width = 1) {
 }
 
 
-function VerifyResults(solutions, goal) {
-    let wide_g_g = pad(goal, 2);
+function VerifyResults() {
+    let wide_grid_goal = pad(grid_goal, 1);
     let result = true;
-    solutions.forEach(function (pat) {
-
-        if (!Equals(make_step_forward(pad(pat)), wide_g_g)) {
+    found_solutions.forEach(function (pat) {
+        if (!Equals(make_step_forward(pat), wide_grid_goal)) {
             result = false;
-
         }
     });
     if (result)

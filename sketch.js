@@ -3,6 +3,7 @@ let size = 500;
 let input_cells = 3;
 let drawThings;
 let oneStep;
+let method = true;
 
 
 let output_grid = [];
@@ -62,7 +63,7 @@ let sketch_reverse = function (p) {
         $("#coverScreen").show();
         setTimeout(function () {
             output_cells = input_cells + 2;
-            grids_array = TestMe(grid);
+            grids_array = (method ? TestMe(grid) : TestMeL(grid));
             refill();
             $("#coverScreen").hide();
         }, 300);
@@ -80,6 +81,7 @@ let sketch_reverse = function (p) {
     };
 
     function refill() {
+        $("#variantsSelect").empty();
         for (let i = 0; i < grids_array.length; i++) {
             $("#variantsSelect").append('<option value="' + i + '">' + i + '</option>').val(0);
         }
@@ -147,6 +149,10 @@ function setup() {
             grid[i].fill(0);
         }
         input_p5.redraw();
+    });
+
+    $("#calculationMethod").change(function () {
+        method = (int($("#calculationMethod").find(":selected").val()) === 0);
     });
 
     $("#coverScreen").hide();

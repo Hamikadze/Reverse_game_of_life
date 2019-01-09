@@ -396,7 +396,7 @@ function Calculate() {
     console.log("Reconstructing...");
     ReconstructPaths();
     console.log("Verifying...");
-    VerifyResults(found_solutions, grid_goal);
+    VerifyResults();
 }
 
 function ReconstructPaths() {
@@ -410,7 +410,7 @@ function ReconstructPaths() {
 
             temp = fill_wide_grid(temp,
                 path[i],
-                [i % g_g_width, i / g_g_width]);
+                [(byte)((i % g_g_width)), (byte)((i / g_g_width))]);
         }
 
         found_solutions.push(temp);

@@ -2,12 +2,12 @@ let f_s_width;
 let max_num;
 
 function TestMeL(goal) {
-    Initialize(goal);
-    Calculate();
+    InitializeLines(goal);
+    CalculateLines();
     return found_solutions;
 }
 
-function Initialize(goal) {
+function InitializeLines(goal) {
     grid_goal = goal;
     g_g_width = goal.length;
     g_g_height = goal[0].length;
@@ -15,7 +15,7 @@ function Initialize(goal) {
     max_num = Pow2(f_s_width);
 }
 
-function Calculate() {
+function CalculateLines() {
     //prepare for row1
     let curr_row = [];
     all_rows = [];
@@ -30,17 +30,17 @@ function Calculate() {
         all_rows = [];
         let row = get_row(i);
         curr_row.forEach(function (testcase) {
-            GenerateNexts(testcase, row, i);
+            GenerateNext(testcase, row, i);
         });
     }
     console.log("Reconstructing...");
-    ReconstructPath(all_rows);
+    ReconstructPathLines(all_rows);
     console.log("Verifying...");
     VerifyResults(found_solutions, grid_goal);
 }
 
 
-function ReconstructPath(thisRow) {
+function ReconstructPathLines(thisRow) {
     found_solutions = [];
     thisRow.forEach(function (path) {
 
@@ -56,7 +56,7 @@ function ReconstructPath(thisRow) {
 }
 
 // Generates additions to all_rows given the previous result and the one before that.
-function GenerateNexts(previousRows, row, depth) {
+function GenerateNext(previousRows, row, depth) {
     let last_row =  array_from_num(previousRows[depth]);
     let current_row = array_from_num(previousRows[depth + 1]);
     let pattern_grid;
