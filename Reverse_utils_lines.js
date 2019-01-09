@@ -2,12 +2,12 @@ let f_s_width;
 let max_num;
 
 function TestMeL(goal) {
-    FullInitialize(goal);
-    Atavise();
+    Initialize(goal);
+    Calculate();
     return found_solutions;
 }
 
-function FullInitialize(goal) {
+function Initialize(goal) {
     grid_goal = goal;
     g_g_width = goal.length;
     g_g_height = goal[0].length;
@@ -15,7 +15,7 @@ function FullInitialize(goal) {
     max_num = Pow2(f_s_width);
 }
 
-function Atavise() {
+function Calculate() {
     //prepare for row1
     let curr_row = [];
     all_rows = [];
