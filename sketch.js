@@ -8,7 +8,7 @@ let method = true;
 
 let output_grid = [];
 let output_cells = input_cells + 2;
-let grids_array = [];
+let grids_array = null;
 
 const sketch_forward = function (p) {
     let resolution;
@@ -90,7 +90,7 @@ let sketch_reverse = function (p) {
     }
 
     p.draw = function () {
-        if (grids_array.length > 0) {
+        if (grids_array !== null && grids_array.length > 0) {
             p.background(255);
             let resolution = size / output_cells;
 
@@ -109,6 +109,10 @@ let sketch_reverse = function (p) {
                     }
                 }
             }
+        }else{
+            if(grids_array !== null && grids_array.length === 0){
+            p.background(255);
+            $('#exampleModalCenter').modal('show');}
         }
     };
 };
@@ -116,7 +120,7 @@ let sketch_reverse = function (p) {
 function setup() {
     const input_p5 = new p5(sketch_forward, 'input_grid');
     const output_p5 = new p5(sketch_reverse, 'output_grid');
-    for (let i = 3; i <= 8; i++) {
+    for (let i = 3; i <= 11; i++) {
         $("#gridSizeSelect").append('<option value="' + i + '">' + i + "x" + i + '</option>');
     }
     $("#gridSizeSelect").change(function () {
